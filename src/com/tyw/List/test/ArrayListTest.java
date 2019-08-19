@@ -1,7 +1,6 @@
-package com.tyw.List.test;
+package com.tyw.list.test;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ArrayListTest {
