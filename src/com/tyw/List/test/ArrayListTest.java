@@ -21,8 +21,6 @@ public class ArrayListTest {
         list1.retainAll(list2);
         System.out.println(list1.toString());
 
-        LinkedList<String> list3 = new LinkedList<>();
-        list3.add("1");
     }
 
 
