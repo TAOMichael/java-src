@@ -755,18 +755,18 @@ public class ArrayList<E> extends AbstractList<E>
     private void writeObject(java.io.ObjectOutputStream s)
             throws java.io.IOException {
         // Write out element count, and any hidden stuff
-        int expectedModCount = modCount;
-        s.defaultWriteObject();
+        int expectedModCount = modCount; // 防止序列化期间有修改
+        s.defaultWriteObject();// 写出非transient非static属性（会写出size属性）
 
         // Write out size as capacity for behavioural compatibility with clone()
-        s.writeInt(size);
+        s.writeInt(size);// 写出元素个数
 
         // Write out all elements in the proper order.
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {// 依次写出元素
             s.writeObject(elementData[i]);
         }
 
-        if (modCount != expectedModCount) {
+        if (modCount != expectedModCount) {// 如果有修改，抛出异常
             throw new ConcurrentModificationException();
         }
     }
@@ -777,23 +777,23 @@ public class ArrayList<E> extends AbstractList<E>
      */
     private void readObject(java.io.ObjectInputStream s)
             throws java.io.IOException, ClassNotFoundException {
-        elementData = EMPTY_ELEMENTDATA;
+        elementData = EMPTY_ELEMENTDATA;// 声明为空数组
 
         // Read in size, and any hidden stuff
-        s.defaultReadObject();
+        s.defaultReadObject();// 读入非transient非static属性（会读取size属性）
 
         // Read in capacity
-        s.readInt(); // ignored
+        s.readInt(); // ignored// 读入元素个数，没什么用，只是因为写出的时候写了size属性，读的时候也要按顺序来读
 
         if (size > 0) {
             // be like clone(), allocate array based upon size not capacity
-            int capacity = calculateCapacity(elementData, size);
+            int capacity = calculateCapacity(elementData, size);// 计算容量
             SharedSecrets.getJavaOISAccess().checkArray(s, Object[].class, capacity);
-            ensureCapacityInternal(size);
+            ensureCapacityInternal(size);// 检查是否需要扩容
 
             Object[] a = elementData;
             // Read in all elements in the proper order.
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {// 依次读取元素到数组中
                 a[i] = s.readObject();
             }
         }
