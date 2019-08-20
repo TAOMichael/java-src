@@ -1,12 +1,15 @@
 package com.tyw.list.test;
 
+import cn.hutool.core.lang.Console;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayListTest {
 
-
-    public static void main(String[] args) {
+    @Test
+    public void  test1() {
         ArrayList<String> list1 = new ArrayList<>();
         list1.add("1");
         list1.add("2");
@@ -18,9 +21,11 @@ public class ArrayListTest {
         list2.add("3");
 
         list1.retainAll(list2);
-        System.out.println(list1.toString());
+        Console.log(list1.toString());
 
     }
+
+
 
 
 }

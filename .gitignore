@@ -32,3 +32,8 @@ target
 sh.exe.stackdump
 /bin/
 /.metadata/
+
+/out/
+
+# 不忽略lib下的jar包
+!/lib/*
