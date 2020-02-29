@@ -12,5 +12,7 @@ public class HashMapTest {
 
     public static void main(String[] args) {
         Map<String, String> testMap = new HashMap<>(20, 10);
+
+        testMap.put("111","test");
     }
 }
